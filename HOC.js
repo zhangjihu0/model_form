@@ -79,40 +79,8 @@ class NormalAddForm extends React.Component {
 
 const WrappedNormalAddForm = Form.create()(NormalAddForm);
 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
 
-//     }
-//   }
-//   handleSubmit = (e) => {
-//     e.preventDefault();
-//     this.refs.jihu.validateFields((err, values) => {
-//       if (!err) {
-//         console.log('Received values of form: ', values);
-//       }
-//     });
-//   }
-//   render() {
-//     return (
-//       <div>
-//         <Model_Alert
-//           title={'first date'}
-//           handleSubmit={this.handleSubmit}
-//         >
-//           <WrappedNormalAddForm
-//             handleSubmit={this.handleSubmit}
-//             ref='jihu'
-//           />
-//         </Model_Alert>
-//       </div>
-//     )
-//   }
-
-// }
-
-const ppHOC = (FormComponent)=>{
+const ppHOC = (FormComponent,request) => {
   return class PP extends React.Component {
     handleSubmit = (e) => {
       e.preventDefault();
@@ -128,18 +96,18 @@ const ppHOC = (FormComponent)=>{
           title='first date'
           handleSubmit={this.handleSubmit}
         >
-        <FormComponent 
-          {...this.props}
-          handleSubmit={this.handleSubmit}
-          ref='jihu'
+          <FormComponent
+            {...this.props}
+            handleSubmit={this.handleSubmit}
+            ref='jihu'
           />
         </Model_Alert>
       )
-      
-      
+
+
     }
   }
 }
-const AA = ppHOC(<WrappedNormalAddForm/>)
+const AA = ppHOC(WrappedNormalAddForm)
 
-ReactDOM.render(<AA/>, document.getElementById('container'));
+ReactDOM.render(<AA />, document.getElementById('container'));
